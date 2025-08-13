@@ -988,3 +988,14 @@ section{
    }
 
 }
+
+.paypal-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#paypal-button-container {
+    max-width: 300px; /* controls width */
+    width: 100%;
+}

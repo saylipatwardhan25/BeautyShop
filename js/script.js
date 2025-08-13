@@ -22,4 +22,3 @@ window.onscroll = () => {
       document.querySelector('.header .header-2').classList.remove('active');
    }
 }
-

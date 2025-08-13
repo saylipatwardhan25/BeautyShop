@@ -144,11 +144,11 @@ if(isset($_POST['order_btn'])){
          </div>
          <div class="inputBox">
             <span>payment method :</span>
-            <select name="method">
-               <option value="cash on delivery">cash on delivery</option>
-               <option value="paypal">Paypal</option>
-               
-            </select>
+            <select name="method" id="payment-method">
+   <option value="cash on delivery">Cash on Delivery</option>
+   <option value="paypal">PayPal</option>
+</select>
+
          </div>
          <div class="inputBox">
             <span>address line 01 :</span>
@@ -175,12 +175,17 @@ if(isset($_POST['order_btn'])){
             <input type="number" min="0" name="pin_code" required placeholder="e.g. 123456">
          </div>
       </div>
-      <input type="submit" value="order now" class="btn" name="order_btn">
+      <input type="submit" value="Order Now" class="btn" name="order_btn" id="order-now-btn">
+
    </form>
 
 </section>
 
-<div id="paypal-button-container"></div>
+<div class="paypal-wrapper">
+    <div id="paypal-button-container"></div>
+</div>
+
+
 
 <!-- PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=ASFZO0A6hlTaeo4juj2dqcgqqL1Nc_3wPDM-J9YTc-xIIypvoUVA3on519-slGDDj9gQc4MM19NcgIl1&currency=USD"></script>
@@ -238,6 +243,29 @@ paypal.Buttons({
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    const paymentMethod = document.getElementById('payment-method');
+    const orderNowBtn = document.getElementById('order-now-btn');
+    const paypalContainer = document.getElementById('paypal-button-container');
+
+    function togglePaymentUI() {
+        if (paymentMethod.value === 'paypal') {
+            orderNowBtn.style.display = 'none'; // hide order button
+            paypalContainer.style.display = 'block'; // show PayPal
+        } else {
+            orderNowBtn.style.display = 'block'; // show order button
+            paypalContainer.style.display = 'none'; // hide PayPal
+        }
+    }
+
+    // Trigger on page load
+    togglePaymentUI();
+
+    // Trigger on select change
+    paymentMethod.addEventListener('change', togglePaymentUI);
+});
+</script>
 
 
 
